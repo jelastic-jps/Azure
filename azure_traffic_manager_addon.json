@@ -1,0 +1,128 @@
+   {
+    "jpsVersion": "0.3",
+    "jpsType": "update",
+    "application": {
+      "logo": "http://www.nopdynamics.com/media/17082/windows-logo.png",
+      "description": {
+        "en": "This addon configure Azure Traffic Manager to work Jelastic backends."
+      },
+      "name": "Azure Traffic Manager Linker Addon",
+      "type": "java",
+      "homepage": "http://www.managecat.com/",
+      "version": "1.0.0",
+      "categories": [
+          "apps/others"
+      ],
+      "settings": {
+        "fields": [{
+            "type": "string",
+            "name": "azure_login",
+            "caption": "Azure login",
+            "required": true,
+            "default": "${user.email}"
+          }, {
+            "type": "string",
+            "name": "password",
+            "caption": "Password",
+            "inputType": "password",
+            "required": true
+          }, {
+            "type": "string",
+            "name": "resgroup",
+            "caption": "Resource Group",
+            "required": true,
+            "default": "Default"
+          }, {
+            "type": "string",
+            "name": "location",
+            "caption": "Location",
+            "required": true
+          }, {
+            "type": "string",
+            "name": "profile_name",
+            "caption": "Profile name",
+            "required": true,
+            "default": "Default"
+          }, {
+            "type": "string",
+            "name": "relative_dns_name",
+            "caption": "Relative DNS name",
+            "required": true
+          }, {
+            "type": "string",
+            "name": "monitoring_path",
+            "caption": "Monitoring path",
+            "required": true,
+            "default": "/"
+          }
+        ]
+      },
+      "env": {
+        "onInit": {
+          "call": ["install_azure_agent", "register_node_in_traffic_manager"]
+        }
+      },
+      "onUninstall": {
+        "call": ["remove_registration", "remove_azure_agent"]
+      },
+      "procedures": [{
+          "id": "install_azure_agent",
+          "onCall": [{
+              "executeShellCommands": [{
+                  "nodeMission": "bl",
+                  "commands": [
+                      "wget -q \"https://raw.githubusercontent.com/jelastic/Azure/master/AzureTrafficManagerConfigurator.sh\" -O /root/AzureTrafficManagerConfigurator.sh",
+                      "/root/AzureTrafficManagerConfigurator.sh --install"
+                  ],
+                  "user": "root"
+                }
+              ]
+            }
+          ]
+        }, {
+          "id": "register_node_in_traffic_manager",
+          "onCall": [{
+              "executeShellCommands": [{
+                  "nodeMission": "bl",
+                  "commands": [
+                      "/root/AzureTrafficManagerConfigurator.sh --username \"${application.settings.first_name}\"--password \"${application.settings.first_name}\"  --resource-group \"${application.settings.first_name}\"  --location \"${application.settings.first_name}\" --profile-name \"${application.settings.first_name}\" --dns-domain \"${application.settings.first_name}\" --monitoring-path \"${application.settings.first_name}\""
+                  ],
+                  "user": "root"
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": "remove_registration",
+          "onCall": [{
+              "executeShellCommands": [{
+                  "nodeMission": "cp",
+                  "commands": [
+                      "echo \"Removing of registration is supported yet\" >> /var/log/azure_traffic_linker.log"
+                  ]
+                }
+              ]
+            }
+          ]
+        }, {
+          "id": "remove_azure_agent",
+          "onCall": [{
+              "executeShellCommands": [{
+                  "nodeMission": "bl",
+                  "commands": [
+                      "/root/AzureTrafficManagerConfigurator.sh --uninstall"
+                  ],
+                  "user": "root"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "success": {
+        "en": "Hello ${application.settings.first_name} </br></br>"
+      }
+    }
+   }
