@@ -13,7 +13,7 @@ function log(){
 function installAzureClient(){
 
     [ -z "$AZURE_CMD" ] && { 
-         log "It seems Azure CLI is not installed, attempting to install ...";
+         log "It seems Azure client is not installed, attempting to install ...";
          $CURL https://raw.githubusercontent.com/creationix/nvm/v0.13.1/install.sh 2>/$ACTIONS_LOG | bash >> $ACTIONS_LOG 2>&1;
          export NVM_DIR="//.nvm"; 
          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 2>/dev/null && nvm install v0.10.30  >> $ACTIONS_LOG 2>&1;
@@ -25,6 +25,22 @@ function installAzureClient(){
     }
 
 }
+
+function uninstallAzureClient(){
+
+    [ ! -z "$AZURE_CMD" ] && { 
+         log "removing Azure client ...";
+         export NVM_DIR="//.nvm"; 
+         [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 2>/dev/null;
+          npm remove azure-cli >> $ACTIONS_LOG 2>&1; 
+          nvm uninstall v0.10.30  >> $ACTIONS_LOG 2>&1;
+         [  -L "/usr/bin/azure" ] && rm "/usr/bin/azure"
+         [ -d "$NVM_DIR" ] && rm -rf "$NVM_DIR";
+         log "Azure client is removed ...";
+    }
+
+}
+
   while [ "$1" != "" ]; do
     case $1 in
 
@@ -32,6 +48,10 @@ function installAzureClient(){
                                   installAzureClient;
                                   exit 0;
                                   ;;
+      --uninstall )               shift;
+                                  uninstallAzureClient;
+                                  exit 0;
+                                  ;;                                  
       --username )                shift;
                                   USERNAME="$1";
                                   ;;
@@ -68,7 +88,9 @@ function installAzureClient(){
   $AZURE_CMD network traffic-manager profile list --json "$RESGROUP" | $GREP -q "$PROFILE_NAME" || {
       $AZURE_CMD network traffic-manager profile create --resource-group "$RESGROUP" --name "$PROFILE_NAME" --relative-dns-name "$DNS_DOMAIN"  --monitor-path "$MONITORING_PATH";
   }
-  $AZURE_CMD network traffic-manager profile endpoint create --target "$(hostname)" --resource-group "$RESGROUP" --profile-name "$PROFILE_NAME" --name $(hostname) --endpoint-location  "$LOCATION"
+  $AZURE_CMD network traffic-manager profile show   --resource-group "$RESGROUP" "$PROFILE_NAME"  --json | $GREP -q "$(hostname)" ||  {
+      $AZURE_CMD network traffic-manager profile endpoint create --target "$(hostname)" --resource-group "$RESGROUP" --profile-name "$PROFILE_NAME" --name $(hostname) --endpoint-location  "$LOCATION" --priority 1
+  }
 
 
 

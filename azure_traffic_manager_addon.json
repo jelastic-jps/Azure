@@ -8,7 +8,7 @@
       },
       "name": "Azure Traffic Manager Linker Addon",
       "type": "java",
-      "homepage": "http://www.managecat.com/",
+      "homepage": "http://www.jelastic.com/",
       "version": "1.0.0",
       "categories": [
           "apps/others"
@@ -100,7 +100,7 @@
               "executeShellCommands": [{
                   "nodeMission": "cp",
                   "commands": [
-                      "echo \"Removing of registration is supported yet\" >> /var/log/azure_traffic_linker.log"
+                      "echo \"Removing of registration is not supported yet\" >> /var/log/azure_traffic_linker.log"
                   ]
                 }
               ]
