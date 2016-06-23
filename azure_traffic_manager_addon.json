@@ -4,7 +4,7 @@
     "application": {
       "logo": "http://www.nopdynamics.com/media/17082/windows-logo.png",
       "description": {
-        "en": "This addon configure Azure Traffic Manager to work Jelastic backends."
+        "en": "This addon configure Azure Traffic Manager to Jelastic backends."
       },
       "name": "Azure Traffic Manager Linker Addon",
       "type": "java",
