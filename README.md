@@ -3,7 +3,7 @@
 
 This repository provides [Azure Traffic Manager Linker](https://github.com/jelastic/azure/) add-on for Jelastic Platform.
 
-**Azure Traffic Manager Linker**  is an addon that is for linking any Jelastic backend to Azure Traffic Manager.
+**Azure Traffic Manager Linker** is an add-on that is for linking any Jelastic backend to Azure Traffic Manager.
 
 **Type of nodes this add-on can be applied to**: ANY
 
