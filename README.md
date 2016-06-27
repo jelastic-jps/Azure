@@ -1,7 +1,7 @@
 [![Azure Traffic Manager Linker](http://www.nopdynamics.com/media/17082/windows-logo.png)](../../../azure)
 ## Azure Traffic Manager Linker for Jelastic
 
-This repository provides [Azure Traffic Manager Linker](http://docs.jelastic.com/file-synchronization/) add-on for Jelastic Platform.
+This repository provides [Azure Traffic Manager Linker](https://github.com/jelastic/azure/) add-on for Jelastic Platform.
 
 **Azure Traffic Manager Linker** is an addon configure Azure Traffic Manager to Jelastic backends.
 
