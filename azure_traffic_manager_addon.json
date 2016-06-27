@@ -8,7 +8,7 @@
       },
       "name": "Azure Traffic Manager Linker Addon",
       "type": "java",
-      "homepage": "https://github.com/jelastic/Azure/",
+      "homepage": "https://github.com/jelastic/azure/",
       "version": "1.0.0",
       "categories": [
           "apps/others"
@@ -71,7 +71,7 @@
               "executeShellCommands": [{
                   "nodeMission": "bl",
                   "commands": [
-                      "wget -q \"https://raw.githubusercontent.com/jelastic/Azure/master/AzureTrafficManagerConfigurator.sh\" -O /root/AzureTrafficManagerConfigurator.sh",
+                      "wget -q \"https://raw.githubusercontent.com/jelastic/azure/master/AzureTrafficManagerConfigurator.sh\" -O /root/AzureTrafficManagerConfigurator.sh",
                       "/root/AzureTrafficManagerConfigurator.sh --install"
                   ],
                   "user": "root"
