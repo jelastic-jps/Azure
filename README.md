@@ -1,7 +1,7 @@
 [![Azure Traffic Manager Linker](http://www.nopdynamics.com/media/17082/windows-logo.png)](../../../azure)
 ## Azure Traffic Manager Linker for Jelastic
 
-This repository provides [Azure Traffic Manager Linker](https://github.com/jelastic/azure/) add-on for Jelastic Platform.
+This repository provides [Azure Traffic Manager Linker](https://github.com/jelastic-jps/azure/) add-on for Jelastic Platform.
 
 **Azure Traffic Manager Linker** is an add-on that is used for linking any Jelastic backend to Azure Traffic Manager.
 
@@ -30,7 +30,7 @@ These initial options can be selected:
 
 In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
 
-[![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic%2Fazure%2Fraw%2Fmaster%2Fmanifest.jps)
+[![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fazure%2Fraw%2Fmaster%2Fmanifest.jps)
 
 To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 
